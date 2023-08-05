@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset ='UTF-8'>
+  <meta name = "viewport" content = "width=device-width", initial-scale = 1.0">
+  <title>My File </title>
+  <style> .blue {color: blue;}  </style>
+</head>
+
+
+<body>
+  <h1> This is a header </h1>
+  <button>don't press me </button>
+  <div id = "special">
+    <p> here is a paragraph 1 </p>
+    <p> here is a paragraph 2 </p>
+    <p> here is a paragraph 3 </p>
+  </div>
+
+  <form>
+    <label><input type = 'checkbox' > Yes! </label>
+  </form>
+
+  <script>
+    //window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    var firstPara = document.querySelector('p');
+    firstPara.className = 'blue';
+
+    var myCheckbox = document.querySelector('input')
+    myCheckbox.setAttribute('checked', 'checked')
+
+    const paragraphs = document.querySelectorAll("p");
+    // paragraphs[0] is the first <p> element
+    // paragraphs[1] is the second <p> element, etc.
+    alert(paragraphs[0].nodeName);
+
+    //var context = new AudioContext();
+    try {
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      ctx = new AudioContext();
+      //console.log(gainNode)
+    }
+    catch(e) {
+      alert('Web Audio API is not supported in this browser');
+    }
+
+    var btn = document.querySelector('button');
+    const gainNode = ctx.createGain();
+
+      // run this command to start the server python simple-cors-http-server.py
+
+
+//audiobuffer is short audio asset residing in memory
+
+    fetch("http://localhost:8000/C4v9.wav")
+      .then(data => data.arrayBuffer())
+    	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+    	.then(decodedAudio => {
+    	c4 = decodedAudio;
+    	})
+
+    fetch("http://localhost:8000/C5v9.wav")
+      .then(data => data.arrayBuffer())
+      .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+      .then(decodedAudio => {
+     	 c5 = decodedAudio;
+      })
+
+    fetch("http://localhost:8000/C3v9.wav")
+      .then(data => data.arrayBuffer())
+      .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+      .then(decodedAudio => {
+       c3 = decodedAudio;
+      })
+
+    fetch("http://localhost:8000/C2v9.wav")
+      .then(data => data.arrayBuffer())
+      .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
+      .then(decodedAudio => {
+       c2 = decodedAudio;
+      })
+
+    function playnote(note, delay) {
+      const playSound = ctx.createBufferSource();
+      detune = 0;
+      if (note === 'c5') {
+        detune = 0;
+        nt = c5;
+      } else if (note === 'cs5') {
+        detune = 100;
+        nt = c5;
+      } else if (note === 'd5') {
+        detune = 200;
+        nt = c5;
+      } else if (note === 'ds5') {
+        detune = 300;
+        nt = c5;
+      } else if (note === 'e5') {
+        detune = 400;
+        nt = c5;
+      } else if (note === 'f5') {
+        detune = 500;
+        nt = c5;
+      } else if (note === 'fs5') {
+        detune = 600;
+        nt = c5;
+      } else if (note === 'g5') {
+        detune = 700;
+        nt = c5;
+      } else if (note === 'gs5') {
+        detune = 800;
+        nt = c5;
+      } else if (note === 'a6') {
+        detune = 900;
+        nt = c5;
+      } else if (note === 'as6') {
+        detune = 1000;
+        nt = c5;
+      } else if (note === 'b6') {
+        detune = 1100;
+        nt = c5;
+      } else if (note === 'c4') {
+        detune = 0;
+        nt = c4;
+      } else if (note === 'cs4') {
+        detune = 100;
+        nt = c4;
+      } else if (note === 'd4') {
+        detune = 200;
+        nt = c4;
+      } else if (note === 'ds4') {
+        detune = 300;
+        nt = c4;
+      } else if (note === 'e4') {
+        detune = 400;
+        nt = c4;
+      } else if (note === 'f4') {
+        detune = 500;
+        nt = c4;
+      } else if (note === 'fs4') {
+        detune = 600;
+        nt = c4;
+      } else if (note === 'g4') {
+        detune = 700;
+        nt = c4;
+      } else if (note === 'gs4') {
+        detune = 800;
+        nt = c4;
+      } else if (note === 'a5') {
+        detune = 900;
+        nt = c4;
+      } else if (note === 'as5') {
+        detune = 1000;
+        nt = c4;
+      } else if (note === 'b5') {
+        detune = 1100;
+        nt = c4;
+      } else if (note === 'c3') {
+        detune = 0;
+        nt = c3;
+      } else if (note === 'cs3') {
+        detune = 100;
+        nt = c3;
+      } else if (note === 'd3') {
+        detune = 200;
+        nt = c3;
+      } else if (note === 'ds3') {
+        detune = 300;
+        nt = c3;
+      } else if (note === 'e3') {
+        detune = 400;
+        nt = c3;
+      } else if (note === 'f3') {
+        detune = 500;
+        nt = c3;
+      } else if (note === 'fs3') {
+        detune = 600;
+        nt = c3;
+      } else if (note === 'g3') {
+        detune = 700;
+        nt = c3;
+      } else if (note === 'gs3') {
+        detune = 800;
+        nt = c3;
+      } else if (note === 'a4') {
+        detune = 900;
+        nt = c3;
+      } else if (note === 'as4') {
+        detune = 1000;
+        nt = c3;
+      } else if (note === 'b4') {
+        detune = 1100;
+        nt = c3;
+
+      } else if (note === 'c2') {
+        detune = 0;
+        nt = c2;
+      } else if (note === 'cs2') {
+        detune = 100;
+        nt = c2;
+      } else if (note === 'd2') {
+        detune = 200;
+        nt = c2;
+      } else if (note === 'ds2') {
+        detune = 300;
+        nt = c2;
+      } else if (note === 'e2') {
+        detune = 400;
+        nt = c2;
+      } else if (note === 'f2') {
+        detune = 500;
+        nt = c2;
+      } else if (note === 'fs2') {
+        detune = 600;
+        nt = c2;
+      } else if (note === 'g2') {
+        detune = 700;
+        nt = c2;
+      } else if (note === 'gs2') {
+        detune = 800;
+        nt = c2;
+      } else if (note === 'a3') {
+        detune = 900;
+        nt = c2;
+      } else if (note === 'as3') {
+        detune = 1000;
+        nt = c2;
+      } else if (note === 'b3') {
+        detune = 1100;
+        nt = c2;
+      } else {
+      }
+
+    //  source.connect(gainNode);
+    //  gainNode.connect(audioCtx.destination);
+//https://www.phpied.com/webaudio-deep-note-part-5-gain-node/ check this website ..getting noice, trying to get rid of noise buy using gain node
+      playSound.buffer = nt;
+      var gainNode = ctx.createGain();
+      //console.log(nt)
+      //gainNode.gain.value = 1;
+      //gainNode.gain.setValueAtTime(0, ctx.currentTime + delay + 1);
+      gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + delay + 1.5);
+      if (detune>0){
+        playSound.detune.value = detune;
+      //console.log(detune)
+      }
+      //console.log(gainNode)
+      playSound.connect(gainNode).connect(ctx.destination);
+
+      playSound.start(ctx.currentTime + delay);
+
+    }
+
+
+    keys = ['c2','cs2','d2','ds2','e2','f2','fs2','g2', 'gs2','a3','as3','b3', 'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a4', 'as4', 'b4', 'c4', 'cs4','d4', 'ds4', 'e4', 'f4', 'fs4', 'g4', 'gs4', 'a5', 'as5', 'b5', 'c5', 'cs5', 'd5', 'ds5', 'e5', 'f5', 'fs5', 'gs5', 'a6', 'as6', 'b6']
+
+    function lesson1 () {
+      var del = 0
+      start = 12
+      for (let i = 0; i < 42 ; i++) {
+        console.log(i)
+        playnote (keys[start+0],del + 0);
+        playnote (keys[start+2],del + .5);
+        playnote (keys[start+4],del + 1);
+        playnote (keys[start+5],del + 1.5);
+        playnote (keys[start+7],del + 2);
+        playnote (keys[start+5],del + 2.5);
+        playnote (keys[start+4],del + 3);
+        playnote (keys[start+2],del + 3.5);
+        playnote (keys[start+0],del + 4);
+        if (i < 18) {
+          playnote (keys[start+0],del + 5);
+          playnote (keys[start+4],del + 5);
+          playnote (keys[start+7],del + 5);
+          playnote (keys[start+1+0],del + 5.5);
+          playnote (keys[start+1+4],del + 5.5);
+          playnote (keys[start+1+7],del + 5.5);
+          start = start + 1
+        } else {
+          playnote (keys[start+0],del + 5);
+          playnote (keys[start+4],del + 5);
+          playnote (keys[start+7],del + 5);
+          playnote (keys[start-1+0],del + 5.5);
+          playnote (keys[start-1+4],del + 5.5);
+          playnote (keys[start-1+7],del + 5.5);
+          start = start - 1
+        }
+        del = del + 6.5
+      }
+
+
+    }
+    btn.addEventListener('click', function() {
+        lesson1();
+    });
+
+/////////////////////////////////////////////////Web audio
+// https://chrislowis.co.uk/2013/06/05/playing-notes-web-audio-api.html
+//https://codepen.io/noogn/pen/NWNrKe
+//https://www.thecodecreative.com/blog/how-to-load-an-audio-file-using-fetch
+
+
+
+</script>
+
+</html>
