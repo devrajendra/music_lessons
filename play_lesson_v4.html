@@ -52,28 +52,28 @@
 
 //audiobuffer is short audio asset residing in memory
 
-    fetch("https://github.com/devrajendra/music_lessons/blob/main/C4v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
     	.then(decodedAudio => {
     	c4 = decodedAudio;
     	})
 
-    fetch("https://github.com/devrajendra/music_lessons/blob/main/C5v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
      	 c5 = decodedAudio;
       })
 
-    fetch("https://github.com/devrajendra/music_lessons/blob/main/C3v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
        c3 = decodedAudio;
       })
 
-    fetch("https://github.com/devrajendra/music_lessons/blob/main/C2v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
