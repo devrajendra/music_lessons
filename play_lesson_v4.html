@@ -4,31 +4,24 @@
   <meta charset ='UTF-8'>
   <meta name = "viewport" content = "width=device-width", initial-scale = 1.0">
   <title>My File </title>
-  <style> .blue {color: blue;}  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 
 <body>
-  <h1> This is a header </h1>
-  <button>don't press me </button>
-  <div id = "special">
-    <p> here is a paragraph 1 </p>
-    <p> here is a paragraph 2 </p>
-    <p> here is a paragraph 3 </p>
+  <div class="header">
+    <h1>Vocal Lesson Simplified</h1>
   </div>
+  <div class = "para">
+    <p> 1) Choose your Range 2) Choose Lesson and 3) Play Lesson </p>
+  </div>
+  <button type="button" class="click">Play Lesson</button>
 
-  <form>
-    <label><input type = 'checkbox' > Yes! </label>
-  </form>
-
+</body>
   <script>
     //window.AudioContext = window.AudioContext || window.webkitAudioContext;
     var firstPara = document.querySelector('p');
     firstPara.className = 'blue';
-
-    var myCheckbox = document.querySelector('input')
-    myCheckbox.setAttribute('checked', 'checked')
-
     const paragraphs = document.querySelectorAll("p");
     // paragraphs[0] is the first <p> element
     // paragraphs[1] is the second <p> element, etc.
@@ -52,28 +45,28 @@
 
 //audiobuffer is short audio asset residing in memory
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
+    fetch("http://localhost:8000/3saudio/C4v9.wav")
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
     	.then(decodedAudio => {
     	c4 = decodedAudio;
     	})
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
+    fetch("http://localhost:8000/3saudio/C5v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
      	 c5 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
+    fetch("http://localhost:8000/3saudio/C3v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
        c3 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
+    fetch("http://localhost:8000/3saudio/C2v9.wav")
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
@@ -236,10 +229,15 @@
 //https://www.phpied.com/webaudio-deep-note-part-5-gain-node/ check this website ..getting noice, trying to get rid of noise buy using gain node
       playSound.buffer = nt;
       var gainNode = ctx.createGain();
+      var convolver = ctx.createConvolver();
       //console.log(nt)
-      //gainNode.gain.value = 1;
+      gainNode.gain.value = 1;
+
+      gainNode.gain.setValueAtTime(1, ctx.currentTime+delay);
+      gainNode.gain.exponentialRampToValueAtTime(0.0005, ctx.currentTime + 1.25 + delay);
+
       //gainNode.gain.setValueAtTime(0, ctx.currentTime + delay + 1);
-      gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + delay + 1.5);
+      //gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + delay + .75);
       if (detune>0){
         playSound.detune.value = detune;
       //console.log(detune)
