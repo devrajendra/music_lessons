@@ -3,16 +3,6 @@
   box-sizing: border-box;
 }
 
-/*
-.button {
-  position: absolute;
-  top:50%;
-  background-color:#0a0a23;
-  color: #fff;
-  border:none;
-  border-radius:10px;
-}
-*/
 .click {
   display: block;
   width: 100%;
