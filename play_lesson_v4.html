@@ -3,29 +3,44 @@
 <head>
   <meta charset ='UTF-8'>
   <meta name = "viewport" content = "width=device-width", initial-scale = 1.0">
-  <title>My File </title>
+  <title>Vocals Lessons Simplified (VLS)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 
 <body>
   <div class="header">
-    <h1>Vocal Lesson Simplified</h1>
+    <h1>Vocal Lessons Simplified</h1>
   </div>
   <div class = "para">
-    <p> 1) Choose your Range 2) Choose Lesson and 3) Play Lesson </p>
+    <p> 1) Choose a lesson from drop down 2) Press "Play" </p>
   </div>
+
+
+
+  <label for="lessons">Choose your lesson:</label>
+
+  <select id="lesson_select" name ="lesson_select">
+    <!option value="rocket">Rocket's red glare</option>
+    <option value="step51">5_step_slow</option>du
+    <!option value="octave1">Octave 1</option>
+    <option value="step52">5_step_fast</option>
+    <option value="step53">octave</option>
+  </select>
+
   <button type="button" class="click">Play Lesson</button>
+  <button_stop type="button" class="click">Stop Lesson</button_stop>
 
 </body>
   <script>
-    //window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    var firstPara = document.querySelector('p');
-    firstPara.className = 'blue';
-    const paragraphs = document.querySelectorAll("p");
+     
+  // ise following scipt to pop up a message when page reloads
+   // var firstPara = document.querySelector('p');
+   // firstPara.className = 'blue';
+   // const paragraphs = document.querySelectorAll("p");
     // paragraphs[0] is the first <p> element
     // paragraphs[1] is the second <p> element, etc.
-    alert(paragraphs[0].nodeName);
+    //alert(paragraphs[0].nodeName);
 
     //var context = new AudioContext();
     try {
@@ -38,6 +53,7 @@
     }
 
     var btn = document.querySelector('button');
+    var btn_stop = document.querySelector('button_stop');
     const gainNode = ctx.createGain();
 
       // run this command to start the server python simple-cors-http-server.py
@@ -46,6 +62,7 @@
 //audiobuffer is short audio asset residing in memory
 
     fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
+    //https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
     	.then(decodedAudio => {
@@ -53,6 +70,7 @@
     	})
 
     fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
+    //https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
@@ -60,6 +78,7 @@
       })
 
     fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
+    //https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
@@ -67,6 +86,7 @@
       })
 
     fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
+    //https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
       .then(decodedAudio => {
@@ -252,7 +272,7 @@
 
     keys = ['c2','cs2','d2','ds2','e2','f2','fs2','g2', 'gs2','a3','as3','b3', 'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a4', 'as4', 'b4', 'c4', 'cs4','d4', 'ds4', 'e4', 'f4', 'fs4', 'g4', 'gs4', 'a5', 'as5', 'b5', 'c5', 'cs5', 'd5', 'ds5', 'e5', 'f5', 'fs5', 'gs5', 'a6', 'as6', 'b6']
 
-    function lesson1 () {
+    function step51 () {
       var del = 0
       start = 12
       for (let i = 0; i < 42 ; i++) {
@@ -285,12 +305,151 @@
         }
         del = del + 6.5
       }
-
-
     }
+      function step52 () {
+        var del = 0
+        start = 12
+        for (let i = 0; i < 42 ; i++) {
+          console.log(i)
+          playnote (keys[start+0],del + 0);
+          playnote (keys[start+2],del + .25);
+          playnote (keys[start+4],del + .5);
+          playnote (keys[start+5],del + .75);
+          playnote (keys[start+7],del + 1);
+          playnote (keys[start+5],del + 1.25);
+          playnote (keys[start+4],del + 1.5);
+          playnote (keys[start+2],del + 1.75);
+          playnote (keys[start+0],del + 2);
+          if (i < 18) {
+            playnote (keys[start+0],del + 2.5);
+            playnote (keys[start+4],del + 2.5);
+            playnote (keys[start+7],del + 2.5);
+            playnote (keys[start+1+0],del + 2.75);
+            playnote (keys[start+1+4],del + 2.75);
+            playnote (keys[start+1+7],del + 2.75);
+            start = start + 1
+          } else {
+            playnote (keys[start+0],del + 2.5);
+            playnote (keys[start+4],del + 2.5);
+            playnote (keys[start+7],del + 2.5);
+            playnote (keys[start-1+0],del + 2.75);
+            playnote (keys[start-1+4],del + 2.75);
+            playnote (keys[start-1+7],del + 2.75);
+            start = start - 1
+          }
+          del = del + 3.75
+        }
+    }
+
+    function step53 () {
+      var del = 0
+      start = 12
+      for (let i = 0; i < 42 ; i++) {
+        console.log(i)
+        playnote (keys[start+0],del + 0);
+        playnote (keys[start+4],del + .25);
+        playnote (keys[start+7],del + .5);
+        playnote (keys[start+12],del + .75);
+        playnote (keys[start+7],del + 1);
+        playnote (keys[start+4],del + 1.25);
+        playnote (keys[start+0],del + 1.5);
+        if (i < 18) {
+          playnote (keys[start+0],del + 2);
+          playnote (keys[start+4],del + 2);
+          playnote (keys[start+7],del + 2);
+          playnote (keys[start+1+0],del + 2.25);
+          playnote (keys[start+1+4],del + 2.25);
+          playnote (keys[start+1+7],del + 2.25);
+          start = start + 1
+        } else {
+          playnote (keys[start+0],del + 2);
+          playnote (keys[start+4],del + 2);
+          playnote (keys[start+7],del + 2);
+          playnote (keys[start-1+0],del + 2.25);
+          playnote (keys[start-1+4],del + 2.25);
+          playnote (keys[start-1+7],del + 2.25);
+          start = start - 1
+        }
+        del = del + 3
+      }
+  }
+
+  function rocket () {
+    var del = 0
+    start = 12
+    for (let i = 0; i < 42 ; i++) {
+      console.log(i)
+      playnote (keys[start+0],del + 0);
+      playnote (keys[start+0],del + .25);
+      playnote (keys[start+4],del + .5);
+      playnote (keys[start+4],del + .75);
+      playnote (keys[start+7],del + 1);
+      playnote (keys[start+7],del + 1.25);
+      if (i < 18) {
+        playnote (keys[start+0],del + 2);
+        playnote (keys[start+4],del + 2);
+        playnote (keys[start+7],del + 2);
+        playnote (keys[start+1+0],del + 2.25);
+        playnote (keys[start+1+4],del + 2.25);
+        playnote (keys[start+1+7],del + 2.25);
+        start = start + 1
+      } else {
+        playnote (keys[start+0],del + 2);
+        playnote (keys[start+4],del + 2);
+        playnote (keys[start+7],del + 2);
+        playnote (keys[start-1+0],del + 2.25);
+        playnote (keys[start-1+4],del + 2.25);
+        playnote (keys[start-1+7],del + 2.25);
+        start = start - 1
+      }
+      del = del + 3
+    }
+}
+
+
+    document.querySelector('button');
+
+
     btn.addEventListener('click', function() {
-        lesson1();
+
+      if (ctx.state === "suspended") {
+      ctx.resume();
+      }
+      var e = document.getElementById("lesson_select");
+      var lesson_sel = e.value;
+      console.log(lesson_sel)
+
+      if (lesson_sel === 'step51') {
+        step51();
+      }
+
+      else if (lesson_sel === 'step52') {
+        step52();
+      }
+
+      else if (lesson_sel === 'step53') {
+        step53();
+      }
+
+      else if (lesson_sel === 'rocket') {
+        rocket();
+      }
     });
+
+
+
+    btn_stop.addEventListener('click', function() {
+      // ctx.stop()
+      window.location.reload()
+    });
+
+//    stopBtn.onclick = () => {
+//  audioCtx.close().then(() => {
+//    startBtn.removeAttribute("disabled");
+//    susresBtn.setAttribute("disabled", "disabled");
+//    stopBtn.setAttribute("disabled", "disabled");
+// });
+//};
 
 /////////////////////////////////////////////////Web audio
 // https://chrislowis.co.uk/2013/06/05/playing-notes-web-audio-api.html
