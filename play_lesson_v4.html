@@ -13,28 +13,42 @@
     <h1>Vocal Lessons Simplified</h1>
   </div>
   <div class = "para">
-    <p> 1) Choose a lesson from drop down 2) Press "Play" </p>
+    <p> 1) Choose a lesson from drop down 2) select vocal range and 3) Press "Play" </p>
   </div>
 
 
 
   <label for="lessons">Choose your lesson:</label>
 
+  <div class="select">
   <select id="lesson_select" name ="lesson_select">
     <!option value="rocket">Rocket's red glare</option>
-    <option value="step51">Fifths_slow</option>du
+    <option value="step51">Fifths_slow</option>
     <!option value="octave1">Octave 1</option>
     <option value="step52">Fifths_fast</option>
     <option value="step53">octave</option>
   </select>
+  </div>
 
+  <label for="lessons">Choose your vocal range:</label>
+
+    <div class="select">
+      <select id = "vocal_range" name = "vocal_range">
+        <option value="male">male - tenor, barritone, bass</option>
+        <option value="female">soprano, mezzo soprano, alto</option>
+      </select>
+    </div>
+   
   <button type="button" class="click">Play Lesson</button>
   <button_stop type="button" class="click">Stop Lesson</button_stop>
 
+  <div class = "down_note">
+    <p>Any feedback? Message me <a href="https://codepen.io/raubaca/pen/bGWmZje" target="_blank">here!</a></p>
+    </div>
+
 </body>
   <script>
-     
-  // ise following scipt to pop up a message when page reloads
+       // ise following scipt to pop up a message when page reloads
    // var firstPara = document.querySelector('p');
    // firstPara.className = 'blue';
    // const paragraphs = document.querySelectorAll("p");
@@ -61,7 +75,7 @@
 
 //audiobuffer is short audio asset residing in memory
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
+    fetch("http://localhost:8000/3saudio/C4v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -69,7 +83,7 @@
     	c4 = decodedAudio;
     	})
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
+    fetch("http://localhost:8000/3saudio/C5v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -77,7 +91,7 @@
      	 c5 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
+    fetch("http://localhost:8000/3saudio/C3v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -85,7 +99,7 @@
        c3 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
+    fetch("http://localhost:8000/3saudio/C2v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -93,8 +107,12 @@
        c2 = decodedAudio;
       })
 
+
+    var playSound = new Array()
+    var counter;
+    var counter = 0; 
     function playnote(note, delay) {
-      const playSound = ctx.createBufferSource();
+      playSound[counter] = ctx.createBufferSource();
       detune = 0;
       if (note === 'c5') {
         detune = 0;
@@ -247,7 +265,7 @@
     //  source.connect(gainNode);
     //  gainNode.connect(audioCtx.destination);
 //https://www.phpied.com/webaudio-deep-note-part-5-gain-node/ check this website ..getting noice, trying to get rid of noise buy using gain node
-      playSound.buffer = nt;
+      playSound[counter].buffer = nt;
       var gainNode = ctx.createGain();
       var convolver = ctx.createConvolver();
       //console.log(nt)
@@ -259,24 +277,24 @@
       //gainNode.gain.setValueAtTime(0, ctx.currentTime + delay + 1);
       //gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + delay + .75);
       if (detune>0){
-        playSound.detune.value = detune;
+        playSound[counter].detune.value = detune;
       //console.log(detune)
       }
       //console.log(gainNode)
-      playSound.connect(gainNode).connect(ctx.destination);
+      playSound[counter].connect(gainNode).connect(ctx.destination);
 
-      playSound.start(ctx.currentTime + delay);
-
+      playSound[counter].start(ctx.currentTime + delay);
+      counter = counter + 1
+      console.log(counter)
     }
 
-
-    keys = ['c2','cs2','d2','ds2','e2','f2','fs2','g2', 'gs2','a3','as3','b3', 'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a4', 'as4', 'b4', 'c4', 'cs4','d4', 'ds4', 'e4', 'f4', 'fs4', 'g4', 'gs4', 'a5', 'as5', 'b5', 'c5', 'cs5', 'd5', 'ds5', 'e5', 'f5', 'fs5', 'gs5', 'a6', 'as6', 'b6']
+    
 
     function step51 () {
       var del = 0
       start = 12
       for (let i = 0; i < 42 ; i++) {
-        console.log(i)
+        //console.log(i)
         playnote (keys[start+0],del + 0);
         playnote (keys[start+2],del + .5);
         playnote (keys[start+4],del + 1);
@@ -310,7 +328,7 @@
         var del = 0
         start = 12
         for (let i = 0; i < 42 ; i++) {
-          console.log(i)
+          //console.log(i)
           playnote (keys[start+0],del + 0);
           playnote (keys[start+2],del + .25);
           playnote (keys[start+4],del + .5);
@@ -344,8 +362,8 @@
     function step53 () {
       var del = 0
       start = 12
-      for (let i = 0; i < 42 ; i++) {
-        console.log(i)
+      for (let i = 0; i < 35 ; i++) {
+       // console.log(i)
         playnote (keys[start+0],del + 0);
         playnote (keys[start+4],del + .25);
         playnote (keys[start+7],del + .5);
@@ -353,7 +371,7 @@
         playnote (keys[start+7],del + 1);
         playnote (keys[start+4],del + 1.25);
         playnote (keys[start+0],del + 1.5);
-        if (i < 18) {
+        if (i < 1) {
           playnote (keys[start+0],del + 2);
           playnote (keys[start+4],del + 2);
           playnote (keys[start+7],del + 2);
@@ -378,7 +396,7 @@
     var del = 0
     start = 12
     for (let i = 0; i < 42 ; i++) {
-      console.log(i)
+      //console.log(i)
       playnote (keys[start+0],del + 0);
       playnote (keys[start+0],del + .25);
       playnote (keys[start+4],del + .5);
@@ -407,17 +425,45 @@
 }
 
 
-    document.querySelector('button');
+    //document.querySelector('button');
 
 
     btn.addEventListener('click', function() {
+        
+  //     document.addEventListener("DOMContentLoaded", function(event) {
+  //     a = document.querySelector("button").disabled = true;
+   //    console.log(a.getAttribute("disabled"));
+   //    });
+// Disable the button
 
+   
+
+
+    male_keys = ['c2','cs2','d2','ds2','e2','f2','fs2','g2', 'gs2','a3','as3','b3', 'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a4', 'as4', 'b4', 'c4', 'cs4','d4', 'ds4', 'e4', 'f4', 'fs4', 'g4', 'gs4', 'a5', 'as5', 'b5', 'c5', 'cs5', 'd5', 'ds5', 'e5', 'f5', 'fs5', 'gs5', 'a6', 'as6', 'b6']
+    female_keys = ['c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a4', 'as4', 'b4', 'c4', 'cs4','d4', 'ds4', 'e4', 'f4', 'fs4', 'g4', 'gs4', 'a5', 'as5', 'b5', 'c5', 'cs5', 'd5', 'ds5', 'e5', 'f5', 'fs5','g5', 'gs5', 'a6', 'as6', 'b6']
+
+    var vr = document.getElementById("vocal_range");
+      var vocal_range = vr.value;
+      console.log(vocal_range)
+      if (vocal_range === 'male') {
+        keys = male_keys;
+      }
+      else if (vocal_range === 'female') {
+        keys = female_keys;
+      }
+
+     // ctx.resume()
       if (ctx.state === "suspended") {
       ctx.resume();
       }
       var e = document.getElementById("lesson_select");
       var lesson_sel = e.value;
       console.log(lesson_sel)
+
+      counter = 0;
+
+
+   
 
       if (lesson_sel === 'step51') {
         step51();
@@ -434,23 +480,32 @@
       else if (lesson_sel === 'rocket') {
         rocket();
       }
+
+
     });
 
 
 
     btn_stop.addEventListener('click', function() {
-      // ctx.stop()
-      window.location.reload()
+        for (let i = 0; i < 1000 ; i++) {
+        a = playSound[i]
+  
+        if (a) {
+          a.stop()
+       }
+    
+
+      console.log(i)
+  
+      }
+
+
+
+      counter = 0;
+    
     });
 
-//    stopBtn.onclick = () => {
-//  audioCtx.close().then(() => {
-//    startBtn.removeAttribute("disabled");
-//    susresBtn.setAttribute("disabled", "disabled");
-//    stopBtn.setAttribute("disabled", "disabled");
-// });
-//};
-
+   
 /////////////////////////////////////////////////Web audio
 // https://chrislowis.co.uk/2013/06/05/playing-notes-web-audio-api.html
 //https://codepen.io/noogn/pen/NWNrKe
