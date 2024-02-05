@@ -43,7 +43,7 @@
   <button_stop type="button" class="click">Stop Lesson</button_stop>
 
   <div class = "down_note">
-    <p>Any feedback? Message me <a href="https://codepen.io/raubaca/pen/bGWmZje" target="_blank">here!</a></p>
+    <p>Any feedback? Message me <a href="https://www.facebook.com/profile.php?id=61556343535866" target="_blank">here!</a></p>
     </div>
 
 </body>
@@ -69,6 +69,8 @@
     var btn = document.querySelector('button');
     var btn_stop = document.querySelector('button_stop');
     const gainNode = ctx.createGain();
+    //document.querySelector("button").disabled = true;
+    
 
       // run this command to start the server python simple-cors-http-server.py
 
@@ -286,7 +288,15 @@
       playSound[counter].start(ctx.currentTime + delay);
       counter = counter + 1
       console.log(counter)
-    }
+
+
+      if (playSound[50]) {
+      endd = playSound[50];
+      endd.addEventListener("ended", () => {
+        document.querySelector("button").disabled = false;
+      })
+
+    }}
 
     
 
@@ -371,7 +381,7 @@
         playnote (keys[start+7],del + 1);
         playnote (keys[start+4],del + 1.25);
         playnote (keys[start+0],del + 1.5);
-        if (i < 1) {
+        if (i < 11) {
           playnote (keys[start+0],del + 2);
           playnote (keys[start+4],del + 2);
           playnote (keys[start+7],del + 2);
@@ -432,6 +442,7 @@
         
   //     document.addEventListener("DOMContentLoaded", function(event) {
   //     a = document.querySelector("button").disabled = true;
+         document.querySelector("button").disabled = true;
    //    console.log(a.getAttribute("disabled"));
    //    });
 // Disable the button
@@ -502,7 +513,7 @@
 
 
       counter = 0;
-    
+      document.querySelector("button").disabled = false;
     });
 
    
