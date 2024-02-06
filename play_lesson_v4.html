@@ -3,22 +3,23 @@
 <head>
   <meta charset ='UTF-8'>
   <meta name = "viewport" content = "width=device-width", initial-scale = 1.0">
-  <title>Vocals Lessons Simplified (customizable and free!) (VLS)</title>
+  <title>Vocal Lessons Simplified (customizable and free) (VLS)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 
 <body>
   <div class="header">
-    <h1>Vocal Lessons Simplified</h1>
+    <h1>Vocal Lessons Simplified (VLS)</h1>
   </div>
   <div class = "para">
-    <p> 1) Choose a lesson from drop down 2) select vocal range and 3) Press "Play" </p>
+    <p> <b>1)</b> Choose a lesson from drop down <b>2)</b> select vocal range and <b>3)</b> Press "Play" </p>
+    <p> <b>Try </b> lip trills, hmm-hmm, muh-muh, mum-mum, no-no, nay-nay, beh-beh, he-he, ee, eh, ah, oh, eu   </p>
   </div>
 
 
 
-  <label for="lessons">Choose your lesson:</label>
+  <label for="lessons"><b>Choose your lesson:</b></label>
 
   <div class="select">
   <select id="lesson_select" name ="lesson_select">
@@ -30,7 +31,7 @@
   </select>
   </div>
 
-  <label for="lessons">Choose your vocal range:</label>
+  <label for="lessons"><b>Choose your vocal range:</b></label>
 
     <div class="select">
       <select id = "vocal_range" name = "vocal_range">
@@ -44,7 +45,7 @@
 
   <div class = "down_note">
     <p>Any feedback? Message me <a href="https://www.facebook.com/profile.php?id=61556343535866" target="_blank">here!</a></p>
-    <p>Link to my first song after 6 months of training <a href="https://music.youtube.com/playlist?list=OLAK5uy_l2dHWEXKBn3YJYvCIXgJsYRHgnsVxFves" target="_blank">here!</a></p>
+    <p>Link to my first song after 6 months of training <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid032FbWutFXLzZcRrkSKGhNrCsuVPA1TbSM3UCtyGAnz8dQBWQvAoZVPzGqixqcZDLsl&id=61556343535866" target="_blank">here!</a></p>
     </div>
 
 </body>
@@ -78,7 +79,7 @@
 
 //audiobuffer is short audio asset residing in memory
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
+    fetch("http://localhost:8000/3saudio/C4v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -86,7 +87,7 @@
     	c4 = decodedAudio;
     	})
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
+    fetch("http://localhost:8000/3saudio/C5v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -94,7 +95,7 @@
      	 c5 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
+    fetch("http://localhost:8000/3saudio/C3v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -102,7 +103,7 @@
        c3 = decodedAudio;
       })
 
-    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
+    fetch("http://localhost:8000/3saudio/C2v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -291,8 +292,8 @@
       console.log(counter)
 
 
-      if (playSound[50]) {
-      endd = playSound[50];
+      if (playSound[450]) {
+      endd = playSound[450];
       endd.addEventListener("ended", () => {
         document.querySelector("button").disabled = false;
       })
