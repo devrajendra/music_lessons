@@ -79,7 +79,7 @@
 
 //audiobuffer is short audio asset residing in memory
 
-    fetch("http://localhost:8000/3saudio/C4v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C4v9.wav
       .then(data => data.arrayBuffer())
     	.then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -87,7 +87,7 @@
     	c4 = decodedAudio;
     	})
 
-    fetch("http://localhost:8000/3saudio/C5v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C5v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -95,7 +95,7 @@
      	 c5 = decodedAudio;
       })
 
-    fetch("http://localhost:8000/3saudio/C3v9.wav")
+    fetch("vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
@@ -103,7 +103,7 @@
        c3 = decodedAudio;
       })
 
-    fetch("http://localhost:8000/3saudio/C2v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C2v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
