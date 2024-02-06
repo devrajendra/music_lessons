@@ -95,7 +95,7 @@
      	 c5 = decodedAudio;
       })
 
-    fetch("vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
+    fetch("https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav")
     //https://vocallesson.s3.us-west-2.amazonaws.com/C3v9.wav
       .then(data => data.arrayBuffer())
       .then(arrayBuffer => ctx.decodeAudioData(arrayBuffer))
