@@ -24,10 +24,12 @@
   <div class="select">
   <select id="lesson_select" name ="lesson_select">
     <!option value="rocket">Rocket's red glare</option>
-    <option value="step51">Fifths_slow</option>
+    <option value="fifths_slow">Fifths_slow</option>
     <!option value="octave1">Octave 1</option>
-    <option value="step52">Fifths_fast</option>
-    <option value="step53">octave</option>
+    <option value="fifths_fast">Fifths_fast</option>
+    <option value="octave1">Octave 1</option>
+    <option value="octave2">Octave 2</option>
+    <option value="runs">Runs</option>
   </select>
   </div>
 
@@ -74,7 +76,7 @@
     //document.querySelector("button").disabled = true;
     
 
-      // run this command to start the server python simple-cors-http-server.py
+      // run this command to start the server ---- python simple-cors-http-server.py
 
 
 //audiobuffer is short audio asset residing in memory
@@ -292,8 +294,8 @@
       console.log(counter)
 
 
-      if (playSound[450]) {
-      endd = playSound[450];
+      if (playSound[440]) {
+      endd = playSound[440];
       endd.addEventListener("ended", () => {
         document.querySelector("button").disabled = false;
       })
@@ -302,7 +304,7 @@
 
     
 
-    function step51 () {
+    function fifths_slow () {
       var del = 0
       start = 12
       for (let i = 0; i < 42 ; i++) {
@@ -320,23 +322,23 @@
           playnote (keys[start+0],del + 5);
           playnote (keys[start+4],del + 5);
           playnote (keys[start+7],del + 5);
-          playnote (keys[start+1+0],del + 5.5);
-          playnote (keys[start+1+4],del + 5.5);
-          playnote (keys[start+1+7],del + 5.5);
+          playnote (keys[start+1+0],del + 6);
+          playnote (keys[start+1+4],del + 6);
+          playnote (keys[start+1+7],del + 6);
           start = start + 1
         } else {
           playnote (keys[start+0],del + 5);
           playnote (keys[start+4],del + 5);
           playnote (keys[start+7],del + 5);
-          playnote (keys[start-1+0],del + 5.5);
-          playnote (keys[start-1+4],del + 5.5);
-          playnote (keys[start-1+7],del + 5.5);
+          playnote (keys[start-1+0],del + 6);
+          playnote (keys[start-1+4],del + 6);
+          playnote (keys[start-1+7],del + 6);
           start = start - 1
         }
-        del = del + 6.5
+        del = del + 8
       }
     }
-      function step52 () {
+      function fifths_fast () {
         var del = 0
         start = 12
         for (let i = 0; i < 42 ; i++) {
@@ -354,24 +356,24 @@
             playnote (keys[start+0],del + 2.5);
             playnote (keys[start+4],del + 2.5);
             playnote (keys[start+7],del + 2.5);
-            playnote (keys[start+1+0],del + 2.75);
-            playnote (keys[start+1+4],del + 2.75);
-            playnote (keys[start+1+7],del + 2.75);
+            playnote (keys[start+1+0],del + 3);
+            playnote (keys[start+1+4],del + 3);
+            playnote (keys[start+1+7],del + 3);
             start = start + 1
           } else {
             playnote (keys[start+0],del + 2.5);
             playnote (keys[start+4],del + 2.5);
             playnote (keys[start+7],del + 2.5);
-            playnote (keys[start-1+0],del + 2.75);
-            playnote (keys[start-1+4],del + 2.75);
-            playnote (keys[start-1+7],del + 2.75);
+            playnote (keys[start-1+0],del + 3);
+            playnote (keys[start-1+4],del + 3);
+            playnote (keys[start-1+7],del + 3);
             start = start - 1
           }
-          del = del + 3.75
+          del = del + 4 
         }
     }
 
-    function step53 () {
+    function octave1 () {
       var del = 0
       start = 12
       for (let i = 0; i < 35 ; i++) {
@@ -402,7 +404,25 @@
         }
         del = del + 3
       }
-  }
+    }
+
+      function octave2 () {
+      var del = 0
+      start = 12
+      for (let i = 0; i < 35 ; i++) {
+       // console.log(i)
+        playnote (keys[start+0],del + 0);
+        playnote (keys[start+12],del + 2);
+        playnote (keys[start+0],del + 4);
+        if (i < 11) {
+          start = start + 1
+        } else {
+          start = start - 1
+        }
+        del = del + 6
+      }
+
+     }
 
   function rocket () {
     var del = 0
@@ -436,7 +456,55 @@
     }
 }
 
-
+function runs () {
+      var del = 0
+      start = 20
+      step = .2
+      for (let i = 0; i < 38 ; i++) {
+        //console.log(i)
+        playnote (keys[start+0],del + 0);
+        playnote (keys[start+2],del + step);
+        playnote (keys[start+0],del + step+step);
+        playnote (keys[start-1],del + step+step+step);
+        playnote (keys[start+0],del + step+step+step+step);
+        playnote (keys[start-1],del + step+step+step+step+step);
+        playnote (keys[start-3],del + step+step+step+step+step+step);
+        playnote (keys[start-1],del + step+step+step+step+step+step+step);
+        playnote (keys[start-3],del + step+step+step+step+step+step+step+step);
+        playnote (keys[start-5],del + step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-3],del + step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-5],del + step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-7],del + step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-5],del + step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-7],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-8],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-7],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-8],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-10],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-8],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-10],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+        playnote (keys[start-12],del + step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step+step);
+       
+        if (i < 15) {
+          playnote (keys[start+0],del + 4.6);
+          playnote (keys[start+4],del + 4.6);
+          playnote (keys[start+7],del + 4.6);
+          playnote (keys[start+1+0],del + 4.9);
+          playnote (keys[start+1+4],del + 4.9);
+          playnote (keys[start+1+7],del + 4.9);
+          start = start + 1
+        } else {
+          playnote (keys[start+0],del + 4.6);
+          playnote (keys[start+4],del + 4.6);
+          playnote (keys[start+7],del + 4.6);
+          playnote (keys[start-1+0],del + 4.9);
+          playnote (keys[start-1+4],del + 4.9);
+          playnote (keys[start-1+7],del + 4.9);
+          start = start - 1
+        }
+        del = del + 5.5
+      }
+    }
     //document.querySelector('button');
 
 
@@ -478,16 +546,24 @@
 
    
 
-      if (lesson_sel === 'step51') {
-        step51();
+      if (lesson_sel === 'fifths_slow') {
+        fifths_slow();
       }
 
-      else if (lesson_sel === 'step52') {
-        step52();
+      else if (lesson_sel === 'fifths_fast') {
+        fifths_fast();
       }
 
-      else if (lesson_sel === 'step53') {
-        step53();
+      else if (lesson_sel === 'octave1') {
+        octave1();
+      }
+
+      else if (lesson_sel === 'octave2') {
+        octave2();
+      }
+
+      else if (lesson_sel === 'runs') {
+        runs();
       }
 
       else if (lesson_sel === 'rocket') {
