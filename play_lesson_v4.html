@@ -274,11 +274,20 @@
       playSound[counter].buffer = nt;
       var gainNode = ctx.createGain();
       var convolver = ctx.createConvolver();
+
+      var length = 0
+      var f = document.getElementById("lesson_select");
+      var lesson_sel = f.value;
+      if (lesson_sel === 'runs') {
+        length = .5
+      }else{
+      length = 1.25
+    }
       //console.log(nt)
       gainNode.gain.value = 1;
 
       gainNode.gain.setValueAtTime(1, ctx.currentTime+delay);
-      gainNode.gain.exponentialRampToValueAtTime(0.0005, ctx.currentTime + 1.25 + delay);
+      gainNode.gain.exponentialRampToValueAtTime(0.0005, ctx.currentTime + length + delay);
 
       //gainNode.gain.setValueAtTime(0, ctx.currentTime + delay + 1);
       //gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + delay + .75);
